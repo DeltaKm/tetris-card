@@ -26,13 +26,13 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: 'gmail', 
       auth: {
-        user: process.env.EMAIL_USER, 
-        pass: process.env.EMAIL_PASSWORD, 
+        user: process.env.NEXT_PUBLIC_EMAIL_USER, 
+        pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD, 
       },
     });
 
     const cardHtml = `
-<div style="width: 100%; max-width: 300px; background-color: white; border: 2px solid #ff5722; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: auto; padding: 20px;">
+<div style="width: 100%; max-width: 300px; background-color: black; border: 2px solid #ff5722; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: auto; padding: 20px;">
   <!-- Logo con sfondo arancione -->
   <div style="text-align: center; background-color: #ff5722; padding: 10px; border-radius: 10px; margin-bottom: 20px;">
     <img src="https://i.ibb.co/rwzShSt/app-logo-orizzontale.png" alt="Logo" style="width: 150px; height: auto; display: block; margin: 0 auto;">
@@ -41,9 +41,9 @@ export async function POST(req: NextRequest) {
   <!-- Dati socio -->
   <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
     <div style="flex: 1;">
-      <p style="font-size: 14px; color: #555; margin: 0;"><strong>Nome:</strong> ${nome}</p>
-      <p style="font-size: 14px; color: #555; margin: 0;"><strong>Cognome:</strong> ${cognome}</p>
-      <p style="font-size: 14px; color: #555; margin: 0;"><strong>Data di Nascita:</strong> ${dataNascita}</p>
+      <p style="font-size: 14px; color: white; margin: 0;"><strong>Nome:</strong> ${nome}</p>
+      <p style="font-size: 14px; color: white; margin: 0;"><strong>Cognome:</strong> ${cognome}</p>
+      <p style="font-size: 14px; color: white; margin: 0;"><strong>Data di Nascita:</strong> ${dataNascita}</p>
     </div>
   </div>
 
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     `;
 
     const mailOptions = {
-      from: `"Associazione" <${process.env.EMAIL_USER}>`, 
+      from: `"Associazione" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`, 
       to: email, 
       subject: 'La tua tessera socio digitale',
       html: cardHtml, 
