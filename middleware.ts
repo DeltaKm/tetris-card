@@ -11,6 +11,7 @@ export function middleware(req: NextRequest) {
   const apiKeyQuery = req.nextUrl.searchParams.get('apiKey'); 
 
   const apiKey = apiKeyHeader || apiKeyQuery; 
+  console.log(process.env.API_KEY)
 
   if (!apiKey || apiKey !== process.env.API_KEY) {
     return NextResponse.json(
